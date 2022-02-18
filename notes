@@ -1,0 +1,7 @@
+for 2.0 release
+download html template starter files 
+install bootstrap styles locally using npm 
+add local custom css styles to angular src/styless.css files
+integrate template files into angular app
+add support for icons and logos
+enhance our application with product images
