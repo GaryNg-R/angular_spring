@@ -28,6 +28,10 @@ export class ProductService {
     return this.getProducts(searchUrl);
   }
 
+  private getProducts(searchUrl: string): Observable<Product[]> {
+    return this.getProducts(searchUrl);
+  }
+  
   getProductCategories(): Observable<ProductCategory[]>{
 
     return this.httpClient.get<GetResponseProductCategory>(this.categoryUrl).pipe(
@@ -35,9 +39,7 @@ export class ProductService {
     );
   };
 
-  private getProducts(searchUrl: string): Observable<Product[]> {
-    return this.getProducts(searchUrl);
-  }
+
 }
 
 
