@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import{Routes, RouterModule} from '@angular/router';
 import { ProductCategoryMeunComponent } from './components/product-category-meun/product-category-meun.component';
+import { SearchComponent } from './components/search/search.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     ProductListComponent,
-    ProductCategoryMeunComponent
+    ProductCategoryMeunComponent,
+    SearchComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
