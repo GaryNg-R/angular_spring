@@ -14,8 +14,6 @@ export class ProductService {
 
   private categoryUrl = 'http://localhost:8080/api/product-category'
 
-
-
   constructor(private httpClient: HttpClient) { }
 
   getProductList(theCategeoryId: number): Observable<Product[]>{
@@ -33,6 +31,15 @@ export class ProductService {
       map(response => response._embedded.productCategory)
     );
   };
+
+  searchProducts(theKeywoard: string): Observable<Product[]>{
+    const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${theKeywoard}`;
+
+    return this.httpClient.get<GetResponseProducts>(searchUrl).pipe(
+      map(response => response._embedded.products)
+    );
+  }
+
 
 }
 
