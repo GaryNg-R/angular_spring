@@ -21,7 +21,7 @@ export class ProductCategoryMeunComponent implements OnInit {
   listProductCategories() {
     this.productService.getProductCategories().subscribe(
       data => {
-        console.log('Product Categories' +JSON.stringify(data));
+        //console.log('Product Categories' +JSON.stringify(data));
         this.productCategories = data;
       }
     )

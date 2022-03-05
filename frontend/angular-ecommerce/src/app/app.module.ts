@@ -11,6 +11,7 @@ import { ProductCategoryMeunComponent } from './components/product-category-meun
 
 
 const routes: Routes = [
+  {path: 'search/:keyword', component: ProductListComponent},
   {path: 'category/:id', component: ProductListComponent},
   {path: 'category', component: ProductListComponent},
   {path: 'products', component: ProductListComponent},
