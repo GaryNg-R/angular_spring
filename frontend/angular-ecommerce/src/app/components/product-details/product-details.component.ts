@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  product : Product;
+  product : Product = new Product;
 
   constructor(private productService: ProductService, private route: ActivatedRoute) { }
 
