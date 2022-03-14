@@ -9,9 +9,11 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import{Routes, RouterModule} from '@angular/router';
 import { ProductCategoryMeunComponent } from './components/product-category-meun/product-category-meun.component';
 import { SearchComponent } from './components/search/search.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 
 const routes: Routes = [
+  {path: 'products/:id', component: ProductDetailsComponent},
   {path: 'search/:keyword', component: ProductListComponent},
   {path: 'category/:id', component: ProductListComponent},
   {path: 'category', component: ProductListComponent},
@@ -25,7 +27,8 @@ const routes: Routes = [
     AppComponent,
     ProductListComponent,
     ProductCategoryMeunComponent,
-    SearchComponent
+    SearchComponent,
+    ProductDetailsComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
