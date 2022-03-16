@@ -1,6 +1,6 @@
+import { Product } from './../../common/product';
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/common/product';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -10,9 +10,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductListComponent implements OnInit {
 
-  products: Product[];
-  currentCategoryId: number;
-  searchMode: boolean;
+  products: Product[] = [];
+  currentCategoryId: number = 1;
+  previousCategoryId: number = 1;
+  searchMode: boolean = false;
+
+  //new properties for pagination 
+  thePageNUmber: number = 1;
+  thePageSize: number = 1 ;
+  theTotalElements: number =0 ; 
 
   constructor(private productService: ProductService, private route: ActivatedRoute) { }
 
@@ -53,11 +59,36 @@ export class ProductListComponent implements OnInit {
       this.currentCategoryId = 1;
     }
 
-    this.productService.getProductList(this.currentCategoryId).subscribe(
-      data => {
-        this.products = data; 
-      }
-    )
+    //
+    //Check if we have a different category than previous 
+    //Note: Angular will reuse a componetn if it is currently being viewd 
+    //
+
+    //if we have a different category id id than previous then set thePageNumber back to 1 
+
+    if(this.previousCategoryId != this.currentCategoryId){
+      this.thePageNUmber = 1;
+    }
+
+    this.previousCategoryId = this.currentCategoryId;
+
+    console.log(`currentCategoryId=${this.currentCategoryId}, thePageNumber=${this.thePageNUmber}`)
+
+
+    this.productService.getProductListPaginate(this.thePageNUmber -1, 
+      this.thePageSize,
+       this.currentCategoryId)
+       .subscribe(this.processResult());
+  }
+
+  processResult() {
+    return data => {
+      this.products = data._embedded.products;
+      console.log(this.products)
+      this.thePageNUmber = data.page.number +1 ;
+      this.thePageSize = data.page.size;
+      this.theTotalElements = data.page.totalElements    
+    };
   }
 
 }

@@ -10,6 +10,7 @@ import{Routes, RouterModule} from '@angular/router';
 import { ProductCategoryMeunComponent } from './components/product-category-meun/product-category-meun.component';
 import { SearchComponent } from './components/search/search.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 const routes: Routes = [
@@ -33,7 +34,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
