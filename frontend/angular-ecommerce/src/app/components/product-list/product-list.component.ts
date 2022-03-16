@@ -16,8 +16,8 @@ export class ProductListComponent implements OnInit {
   searchMode: boolean = false;
 
   //new properties for pagination 
-  thePageNUmber: number = 1;
-  thePageSize: number = 1 ;
+  thePageNumber: number = 1;
+  thePageSize: number = 10 ;
   theTotalElements: number =0 ; 
 
   constructor(private productService: ProductService, private route: ActivatedRoute) { }
@@ -67,15 +67,15 @@ export class ProductListComponent implements OnInit {
     //if we have a different category id id than previous then set thePageNumber back to 1 
 
     if(this.previousCategoryId != this.currentCategoryId){
-      this.thePageNUmber = 1;
+      this.thePageNumber = 1;
     }
 
     this.previousCategoryId = this.currentCategoryId;
 
-    console.log(`currentCategoryId=${this.currentCategoryId}, thePageNumber=${this.thePageNUmber}`)
+    console.log(`currentCategoryId=${this.currentCategoryId}, thePageNumber=${this.thePageNumber}`)
 
 
-    this.productService.getProductListPaginate(this.thePageNUmber -1, 
+    this.productService.getProductListPaginate(this.thePageNumber -1, 
       this.thePageSize,
        this.currentCategoryId)
        .subscribe(this.processResult());
@@ -84,11 +84,17 @@ export class ProductListComponent implements OnInit {
   processResult() {
     return data => {
       this.products = data._embedded.products;
-      console.log(this.products)
-      this.thePageNUmber = data.page.number +1 ;
+      //console.log(this.products)
+      this.thePageNumber = data.page.number +1 ;
       this.thePageSize = data.page.size;
       this.theTotalElements = data.page.totalElements    
     };
   }
+
+  updatePageSize(pageSize: number ){
+    this.thePageSize = pageSize;
+    this.thePageNumber = 1; 
+    this.listProducts();
+    }
 
 }
