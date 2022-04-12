@@ -7,10 +7,16 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class CartService {
-  cartItems: CartItem[] = [];
+  cartItems: CartItem[];
   totalPrice: Subject<number> = new Subject<number>();
   totalQuantity: Subject<number> = new Subject<number>();
-  constructor() {}
+
+  constructor() {
+    this.cartItems =
+      JSON.parse(sessionStorage.getItem('cartItems')) != null
+        ? JSON.parse(sessionStorage.getItem('cartItems'))
+        : [];
+  }
 
   addToCart(theCartItem: CartItem) {
     //check if we already have the item in our cart
@@ -52,6 +58,7 @@ export class CartService {
     this.totalQuantity.next(totalQuantityValue);
     //log cart data just for debugging purpose
     this.logCartData(totalPriceValue, totalQuantityValue);
+    this.persistCartItems();
   }
   logCartData(totalPriceValue: number, totalQuantityValue: number) {
     console.log('Contents of the cart');
@@ -68,5 +75,9 @@ export class CartService {
     );
 
     console.log(`--------`);
+  }
+
+  persistCartItems() {
+    sessionStorage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
 }
