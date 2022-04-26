@@ -1,5 +1,5 @@
+import { CartItem } from 'src/app/common/cart-item';
 import { ComponentFixture } from '@angular/core/testing';
-import { CartItem } from './../common/cart-item';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
@@ -79,5 +79,26 @@ export class CartService {
 
   persistCartItems() {
     sessionStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+  }
+
+  decrementQuantity(theCartItem: CartItem) {
+    theCartItem.quantity--;
+    if (theCartItem.quantity === 0) {
+      this.remove(theCartItem);
+    } else {
+      this.computeCartTotals();
+    }
+  }
+
+  remove(theCartItem: CartItem) {
+    //get index of item in the array
+    const itemIndex = this.cartItems.findIndex(
+      (tempCartItem) => tempCartItem.id === theCartItem.id
+    );
+    //if found, remove the item from the array at the given index
+    if (itemIndex > -1) {
+      this.cartItems.splice(itemIndex, 1);
+      this.computeCartTotals();
+    }
   }
 }
