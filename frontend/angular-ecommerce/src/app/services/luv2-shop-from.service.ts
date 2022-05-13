@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class Luv2ShopFromService {
+  private countriesUrl = 'http://localhost:8080/api/countries';
+  private stateUrl = 'http://localhost:8080/api/states';
   constructor() {}
 
   getCreditCardMonths(startMonth: number): Observable<number[]> {
