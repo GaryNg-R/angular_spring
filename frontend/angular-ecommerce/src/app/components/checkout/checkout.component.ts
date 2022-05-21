@@ -2,6 +2,7 @@ import { Luv2ShopFromService } from './../../services/luv2-shop-from.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Country } from 'src/app/common/country';
+import { State } from 'src/app/common/state';
 
 @Component({
   selector: 'app-checkout',
@@ -18,6 +19,9 @@ export class CheckoutComponent implements OnInit {
   creditCardMonths: number[] = [];
 
   countries: Country[] = [];
+
+  shippingAddressStates: State[] = [];
+  billingdressStates: State[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -112,5 +116,25 @@ export class CheckoutComponent implements OnInit {
         console.log('Retrieved credit card months: ' + JSON.stringify(data));
         this.creditCardMonths = data;
       });
+  }
+
+  getStates(formGroupName: string) {
+    const formGroup = this.checkoutFormGroup.get(formGroupName);
+    const countryCdoe = formGroup.value.country.code;
+    const countryName = formGroup.value.country.name;
+
+    console.log(`{formGroupName} country code: ${countryCdoe}`);
+    console.log(`{formGroupName} country name: ${countryName}`);
+
+    this.luv2ShopFromService.getStates(countryCdoe).subscribe((data) => {
+      if (formGroupName === 'shippingAddress') {
+        this.shippingAddressStates = data;
+      } else {
+        this.billingdressStates = data;
+      }
+
+      //select the first state at the default
+      formGroup.get('state').setValue(data[0]);
+    });
   }
 }
