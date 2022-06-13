@@ -28,7 +28,8 @@ export class CartDetailsComponent implements OnInit {
       (data) => (this.totalQuantity = data)
     );
     //compute cart total price and quantity
-    this.cartService.computeCartTotals();
+    //can be delete now, since we are using behaviorSubject ???
+    //this.cartService.computeCartTotals();
   }
 
   incrementQuantity(theCartItem: CartItem) {
