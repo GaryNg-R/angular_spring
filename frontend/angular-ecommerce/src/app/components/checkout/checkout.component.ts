@@ -1,3 +1,4 @@
+import { Luv2ShopValidators } from './../../validators/luv2-shop-validators';
 import { Luv2ShopFromService } from './../../services/luv2-shop-from.service';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -39,6 +40,7 @@ export class CheckoutComponent implements OnInit {
         firstName: new FormControl('', [
           Validators.required,
           Validators.minLength(2),
+          Luv2ShopValidators.notOnlyWhitespace,
         ]),
         lastName: new FormControl('', [
           Validators.required,
