@@ -29,5 +29,8 @@ public class OrderItem {
     @Column(name = "product_id")
     private Long productID;
 
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 
 }
