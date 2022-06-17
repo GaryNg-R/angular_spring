@@ -1,4 +1,4 @@
-package com.eCommerce.eCommerce.Project.dto.entity;
+package com.eCommerce.eCommerce.Project.entity;
 
 import lombok.Getter;
 import lombok.Setter;

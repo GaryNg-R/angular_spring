@@ -1,4 +1,4 @@
-package com.eCommerce.eCommerce.Project.dto.entity;
+package com.eCommerce.eCommerce.Project.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="cusotmer")
+@Table(name="customer")
 @Getter
 @Setter
 public class Customer {

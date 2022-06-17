@@ -3,9 +3,9 @@ package com.eCommerce.eCommerce.Project.service;
 import com.eCommerce.eCommerce.Project.dao.CustomerRepository;
 import com.eCommerce.eCommerce.Project.dto.Purchase;
 import com.eCommerce.eCommerce.Project.dto.PurchaseResponse;
-import com.eCommerce.eCommerce.Project.dto.entity.Customer;
-import com.eCommerce.eCommerce.Project.dto.entity.Order;
-import com.eCommerce.eCommerce.Project.dto.entity.OrderItem;
+import com.eCommerce.eCommerce.Project.entity.Customer;
+import com.eCommerce.eCommerce.Project.entity.Order;
+import com.eCommerce.eCommerce.Project.entity.OrderItem;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

@@ -1,6 +1,6 @@
 package com.eCommerce.eCommerce.Project.dao;
 
-import com.eCommerce.eCommerce.Project.dto.entity.State;
+import com.eCommerce.eCommerce.Project.entity.State;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
