@@ -1,9 +1,9 @@
 package com.eCommerce.eCommerce.Project.config;
 
-import com.eCommerce.eCommerce.Project.entity.Country;
-import com.eCommerce.eCommerce.Project.entity.Product;
-import com.eCommerce.eCommerce.Project.entity.ProductCategory;
-import com.eCommerce.eCommerce.Project.entity.State;
+import com.eCommerce.eCommerce.Project.dto.entity.Country;
+import com.eCommerce.eCommerce.Project.dto.entity.Product;
+import com.eCommerce.eCommerce.Project.dto.entity.ProductCategory;
+import com.eCommerce.eCommerce.Project.dto.entity.State;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;

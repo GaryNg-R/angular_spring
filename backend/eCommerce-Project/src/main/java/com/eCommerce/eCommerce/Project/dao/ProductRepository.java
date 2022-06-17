@@ -1,6 +1,6 @@
 package com.eCommerce.eCommerce.Project.dao;
 
-import com.eCommerce.eCommerce.Project.entity.Product;
+import com.eCommerce.eCommerce.Project.dto.entity.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
