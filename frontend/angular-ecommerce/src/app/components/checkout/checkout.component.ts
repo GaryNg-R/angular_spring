@@ -165,17 +165,19 @@ export class CheckoutComponent implements OnInit {
     //setup order
     let order = new Order();
     order.totalPrice = this.totalPrice;
-    order.totalQuantiity = this.totalQuantity;
+    order.totalQuantity = this.totalQuantity;
+    console.log(`what is my order.totalQuantiity `);
     //get cart items
     const cartItems = this.cartService.cartItems;
     //create orderItems from cartItems
     let orderItems: OrderItem[] = cartItems.map(
       (tempCartItem) => new OrderItem(tempCartItem)
     );
+    console.log(`what is item here ${orderItems[0].productId}`);
     //setup purchase
     let purchase = new Purchase();
     //populate purchase - customer
-    purchase.cusomter = this.checkoutFormGroup.controls['customer'].value;
+    purchase.customer = this.checkoutFormGroup.controls['customer'].value;
 
     //populate purchase - shipping address
     purchase.shippingAddress =
