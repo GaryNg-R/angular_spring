@@ -1,7 +1,6 @@
 package com.eCommerce.eCommerce.Project.entity;
 
 import lombok.Data;
-import lombok.Generated;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
