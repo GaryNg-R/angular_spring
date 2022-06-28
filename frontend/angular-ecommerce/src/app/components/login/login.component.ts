@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { OktaAuthGuard, OktaAuthStateService } from '@okta/okta-angular';
+import { Component, OnInit, Inject } from '@angular/core';
+import { OktaAuthStateService, OKTA_AUTH } from '@okta/okta-angular';
 import { OktaAuth } from '@okta/okta-auth-js';
 import OktaSignIn from '@okta/okta-signin-widget';
 
@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private oktaAuthService: OktaAuthStateService,
+    @Inject(OKTA_AUTH)
     private oktaAuth: OktaAuth
   ) {
     this.oktaSignin = new OktaSignIn({
