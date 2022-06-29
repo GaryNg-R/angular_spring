@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { OktaAuthStateService } from '@okta/okta-angular';
+import { Component, Inject, OnInit } from '@angular/core';
+import { OktaAuthStateService, OKTA_AUTH } from '@okta/okta-angular';
 import { OktaAuth } from '@okta/okta-auth-js';
 
 @Component({
@@ -13,6 +13,7 @@ export class LoginStatusComponent implements OnInit {
 
   constructor(
     private oktaAuthService: OktaAuthStateService,
+    @Inject(OKTA_AUTH)
     private oktaAuth: OktaAuth
   ) {}
 
