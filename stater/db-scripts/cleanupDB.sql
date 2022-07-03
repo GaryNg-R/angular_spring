@@ -10,3 +10,8 @@ TRUNCATE order_item;
 TRUNCATE address;
 
 SET foreign_key_checks=1;
+
+
+-- make the emial address unique 
+
+ALTER TABLE customer ADD UNIQUE(email);
