@@ -39,6 +39,14 @@ public class CheckoutServicelmpl implements CheckoutService{
         order.setShippingAddress(purchase.getShippingAddress());
         //populate customer with order
         Customer customer = purchase.getCustomer();
+
+        //check if this is an existing customer
+        String theEmail = customer.getEmail();
+        Customer customerFromDB = customerRepository.findByEmail(theEmail);
+        if(customerFromDB != null){
+            //We found them ... let's assign them accordingly
+            customer = customerFromDB;
+        }
         customer.add(order);
         //save to the database
         customerRepository.save(customer);
