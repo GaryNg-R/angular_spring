@@ -12,7 +12,7 @@ export class OrderHistoryService {
 
   getOrderHistory(theEmail: string): Observable<GetResponseOrderHistory> {
     //need to build URL base on customer email
-    const orderHistoryUrl = `${this.orderUrl}/search/findByCustomerEmail?email=${theEmail}`;
+    const orderHistoryUrl = `${this.orderUrl}/search/findByCustomerEmail?email=${theEmail}&sort=dateCreated,DESC`;
 
     return this.httpClient.get<GetResponseOrderHistory>(orderHistoryUrl);
   }
