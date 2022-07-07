@@ -50,6 +50,11 @@ const routes: Routes = [
     component: MembersPageComponent,
     canActivate: [OktaAuthGuard],
   },
+  {
+    path: 'order-history',
+    component: OrderHistoryComponent,
+    canActivate: [OktaAuthGuard],
+  },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'cart-details', component: CartDetailsComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
