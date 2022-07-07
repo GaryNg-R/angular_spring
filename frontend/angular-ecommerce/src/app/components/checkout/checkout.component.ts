@@ -22,6 +22,7 @@ import { Order } from 'src/app/common/order';
   styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent implements OnInit {
+  storage: Storage = sessionStorage;
   checkoutFormGroup: FormGroup;
 
   totalPrice: number = 0;
@@ -46,6 +47,9 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.reviewCartDeatils();
 
+    //read the user's email address from browser storage
+    const theEmail = JSON.parse(this.storage.getItem('userEmail'));
+
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
         firstName: new FormControl('', [
@@ -58,7 +62,7 @@ export class CheckoutComponent implements OnInit {
           Validators.minLength(2),
           Luv2ShopValidators.notOnlyWhitespace,
         ]),
-        email: new FormControl('', [
+        email: new FormControl(theEmail, [
           Validators.required,
           Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
         ]),
