@@ -1,22 +1,45 @@
+import { OktaAuth } from '@okta/okta-auth-js';
 import {
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Inject, Injectable } from '@angular/core';
+import { from, Observable } from 'rxjs';
+import { OKTA_AUTH } from '@okta/okta-angular';
+import { accessSync } from 'fs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthInterceptorService implements HttpInterceptor {
-  constructor() {}
+  constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth) {}
 
   intercept(
-    req: HttpRequest<any>,
+    request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    throw new Error('Method not implemented.');
+    return from(this.handleAccess(request, next));
+  }
+
+  private async handleAccess(
+    request: HttpRequest<any>,
+    next: HttpHandler
+  ): Promise<HttpEvent<any>> {
+    //Only add access token for secured endpoints
+    const securedEndpoints = ['http/localhost:8080/api/orders'];
+    if (securedEndpoints.some((url) => request.urlWithParams.includes(url))) {
+      //get access token
+      const accessToken = await this.oktaAuth.getAccessToken();
+
+      //clone the request and add new header with access token
+      request = request.clone({
+        setHeaders: {
+          Authorization: 'Bear ' + accessToken,
+        },
+      });
+    }
+    return next.handle(request).toPromise();
   }
 }
