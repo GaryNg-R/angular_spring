@@ -8,7 +8,6 @@ import {
 import { Inject, Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { OKTA_AUTH } from '@okta/okta-angular';
-import { accessSync } from 'fs';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +27,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     next: HttpHandler
   ): Promise<HttpEvent<any>> {
     //Only add access token for secured endpoints
-    const securedEndpoints = ['http/localhost:8080/api/orders'];
+    const securedEndpoints = ['http://localhost:8080/api/orders'];
     if (securedEndpoints.some((url) => request.urlWithParams.includes(url))) {
       //get access token
       const accessToken = await this.oktaAuth.getAccessToken();
@@ -36,7 +35,7 @@ export class AuthInterceptorService implements HttpInterceptor {
       //clone the request and add new header with access token
       request = request.clone({
         setHeaders: {
-          Authorization: 'Bear ' + accessToken,
+          Authorization: 'Bearer ' + accessToken,
         },
       });
     }
