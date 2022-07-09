@@ -43,3 +43,4 @@ Thumbs.db
 
 #Config ile 
 src/app/config/*
+ssl-localhost/*
