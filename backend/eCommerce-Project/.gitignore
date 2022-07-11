@@ -32,4 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 
-luv2code-keystore.p12
+luv2code-keystore.jks
