@@ -1,4 +1,4 @@
-import { environment } from './../../environments/environment.prod';
+import { environment } from './../../environments/environment';
 import { OktaAuth } from '@okta/okta-auth-js';
 import {
   HttpEvent,
